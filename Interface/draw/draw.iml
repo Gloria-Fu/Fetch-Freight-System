@@ -56,9 +56,9 @@
         <jarDirectory url="file://D:/app/fushiqing/product/11.2.0/dbhome_1/jdbc/lib" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="library" exported="" name="commons-dbcp-1.4" level="project" />
-    <orderEntry type="library" exported="" name="commons-pool-1.5.5.jar" level="project" />
-    <orderEntry type="library" exported="" name="java" level="project" />
-    <orderEntry type="library" exported="" name="jdbc" level="project" />
+    <orderEntry type="library" name="commons-dbcp-1.4" level="project" />
+    <orderEntry type="library" name="commons-pool-1.5.5.jar" level="project" />
+    <orderEntry type="library" name="java" level="project" />
+    <orderEntry type="library" name="jdbc" level="project" />
   </component>
 </module>

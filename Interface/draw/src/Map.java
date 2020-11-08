@@ -1,5 +1,3 @@
-import resource.task;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -7,64 +5,51 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Vector;
 
 
-public class Map extends Thread {
-    public static int nodeId = 0;
-    public static int goodsID = 0;
-    public static int start = 0, gap = 11;
-    public static int gridSize = 10;
-    public static int shelf_w = 16, shelf_h = 11, goods_w = 12, goods_h = 2, road1 = 2, road2 = 3;
-    public static int width = 76, height = 47;
-    public static int shelfXnum = 3, shelfYnum = 3;
-    public static int start_x = 4, start_y = 4;
-
-    public static int taskAveragePeriod = 0;
-    public static int taskWaitAveragePeriod = 0;
-
+public class Map extends Thread
+{
+    public static int start = 0, gap = 10;
+    public static int gridSize = 9;
+    public static int width = 147, height = 89;
 
     private JFrame jFrame = new JFrame();
 
-    public static int pickingRobotNum = 0;
-    public static int fixFreightRobotNum = 0;
-    public static int freeFreightRobotNum = 0;
-    public static int freightRobotNum = 0;
-    public static int allRobotNum = 0;
-
-    private Integer robotId = 0;
-
-    public static Integer[][] robotLocation = new Integer[allRobotNum][2];
-
-    public static int count = 0;
-
-    public static int goodsTypeNum = 9;
-
-    public static int periodId = 0;
-
     @Override
     public void run() {
-        jFrame.getContentPane().setBackground(Color.white);         //设置背景颜色
-        jFrame.setSize(850, 555);                    //1500X900显示画框
-        jFrame.setTitle("抓取-搬运机器人协作调度仿真系统");
+        jFrame.getContentPane().setBackground(Color.white);
+        jFrame.setSize(1900, 1020);
 
-        JPanel jp1 = new JPanel() {
-            public void paint(Graphics g) {
+        JPanel jp1 = new JPanel(){
+            public void paint(Graphics g){
                 super.paint(g);
 
                 try {
-                    drawMap(g);
+                    drawRobot(g);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
 
-                drawTarget(g);                                     //把目标位置写入数据库
+                drawTarget(g);
 
                 try {
                     drawRobots(g);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
+
+                try {
+                    showInfo(g);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    showInfo2(g);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
             }
         };
         jp1.setBackground(null);
@@ -78,7 +63,7 @@ public class Map extends Thread {
                 e.printStackTrace();
             }
 
-            jp1 = new JPanel() {                          //重绘jpanel，实现界面刷新
+            jp1 = new JPanel() {
                 public void paint(Graphics g) {
                     super.paint(g);
                 }
@@ -92,15 +77,17 @@ public class Map extends Thread {
     }
 
 
-    public static int drawMap(Graphics g) throws FileNotFoundException {
 
-        String path = "E:\\project\\test\\map1.txt";
+    public static int drawRobot(Graphics g) throws FileNotFoundException {
+
+        String path = "E:\\project\\3X3V6\\video\\V0\\map.txt";
+
         Scanner in = new Scanner(new File(path));
         List data = new ArrayList();
         while (in.hasNextLine()) {
             int num = in.nextInt();
 
-            if (num == -1) {
+            if(num == -1){
                 break;
             }
 
@@ -117,17 +104,18 @@ public class Map extends Thread {
 
             mapNode[index] = arr[0];
             index++;
-            if (index == 5) {
-                if (mapNode[3] == 0) {
+            if(index == 5) {
+                if(mapNode[3] == 0){
                     g.setColor(Color.BLACK);
-                } else if (mapNode[3] == 1) {
-                    g.setColor(Color.LIGHT_GRAY);
-                } else if (mapNode[3] == 2) {
+
+                }else if(mapNode[3] == 1){
+                    g.setColor(Color.white);
+                }else if(mapNode[3] == 2){
                     g.setColor(Color.ORANGE);
-                } else if (mapNode[3] == 3) {
+                }else if(mapNode[3] == 3){
                     g.setColor(Color.red);
                 }
-                g.fillRect(mapNode[1] * gap, mapNode[2] * gap, gridSize, gridSize);
+                g.fillRect(mapNode[1]*gap, (mapNode[2]+2)*gap, gridSize, gridSize);
                 index = 0;
             }
 
@@ -137,54 +125,173 @@ public class Map extends Thread {
     }
 
 
-    /**
-     * @param g
-     * @param sql
-     * @return nodeID
-     */
-    public static int drawTarget(Graphics g) {
-        int target_x1 = width - 6, target_x2 = start + 5, target_y = start + 3;
-        int targets = 0;
-        int col, row;
+    public static int showInfo(Graphics g) throws FileNotFoundException {
 
-        g.setColor(Color.white);
+        String path = "E:\\project\\3X3V6\\video\\V0\\news.txt";
 
-        row = target_y;
+        Scanner in = new Scanner(new File(path));
+        List data = new ArrayList();
 
-        g.fillRect((width - 6) * gap, (start + 3) * gap, 5 * gap, 2 * gap);
-        g.fillRect((width - 6) * gap, (start + 5) * gap, 2 * gap, (height - 10) * gap);
-        g.fillRect((width - 6) * gap, (height - 5) * gap, 5 * gap, 2 * gap);
+        while (in.hasNextLine()) {
+            int num = in.nextInt();
+            if (num == -1) {
+                break;
+            }
+            int[] arrs = {num};
+            data.add(arrs);
+        }
+
+        g.setColor(Color.black);
+        Font font = new Font("Times New Roman", Font.PLAIN, 18);
+        g.setFont(font);
+        int airsX = (width / 10) * gap;
+        int airsY = 15;
+        g.drawString(" Shenzhen Institute of Artificial Intelligence and Robotics\n" +
+                " for Society  ----   Fetch & Freight Robots Cooperatively Scheduling Simulation Platform", airsX, airsY);
 
         g.setColor(Color.BLACK);
-        Font font = new Font("宋体", Font.BOLD, 18);
+        font = new Font("Times New Roman", Font.BOLD, 15);
         g.setFont(font);
 
-        int y = 10, grid = 10;
-        g.drawString("传", (width - 6) * gap + 3, y * gap);
-        g.drawString("送", (width - 6) * gap + 3, (y + grid) * gap);
-        g.drawString("带", (width - 6) * gap + 3, (y + 2 * grid) * gap);
+        int textX = (width + 1) * gap;
+        int textY = 4 * gap;
+        int gapp = 22;
 
-        nodeId += targets;
+        int[] a = new int[3];
+        for (int i = 0; i < data.size(); i++) {
+            int[] arr = (int[]) data.get(i);
+            a[i] = arr[0];
+        }
+        g.drawString("Fetch Robot Number: 110", textX, textY);
+        g.drawString("Freight Robot Number: 220", textX, textY += gapp);
+        g.drawString("Goods Area Number: 36", textX, textY += gapp);
+        g.drawString("Goods Type Number: 40", textX, textY += gapp);
+        g.drawString("The Current Working Time Step: " + String.valueOf(a[0]), textX, textY += gapp);
+        g.drawString("The Total Task Number: " + String.valueOf(a[1]), textX, textY += gapp);
+        g.drawString("The Finished Task Number: " + String.valueOf(a[2]), textX, textY += gapp);
+
+        font = new Font("Times New Roman", Font.BOLD, 13);
+        g.setColor(Color.red);
+        g.fillRect(100, 920, gridSize + 2, gridSize + 2);
+        g.setColor(Color.BLACK);
+        g.drawString("Goods Shelf", 135, 930);
+
+        g.setColor(Color.ORANGE);
+        g.fillRect(100 + gridSize * 20, 920, gridSize + 2, gridSize + 2);
+        g.setColor(Color.BLACK);
+        g.drawString("Goods Area", 135 + gridSize * 20, 930);
+
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(100 + gridSize * 40, 920, gridSize + 2, gridSize + 2);
+        g.setColor(Color.BLACK);
+        g.drawString("Conveyor", 135 + gridSize * 40, 930);
+
+        g.setColor(Color.BLACK);
+        g.fillRect(100 + gridSize * 60, 920, gridSize + 4, gridSize + 4);
+        g.setColor(Color.white);
+        g.fillRect(100 + gridSize * 60 + 1, 921, gridSize + 2, gridSize + 2);
+        g.setColor(Color.BLACK);
+        g.drawString("Public Road", 135 + gridSize * 60, 930);
+
+        g.setColor(Color.MAGENTA);
+        g.fillOval(100 + gridSize * 80, 925, 3, 4);
+        g.fillOval(100 + gridSize * 80+6, 925, 3, 4);
+        g.fillRect(100 + gridSize * 80, 922, gridSize + 2, gridSize / 2);
+        g.setColor(Color.BLACK);
+        g.drawString("The Freight Robot", 135 + gridSize * 80, 930);
+
+        g.setColor(Color.blue);
+        g.fillRect(100 + gridSize * 100,920 + gridSize - 5, gridSize, 5);
+        g.fillRect(100 + gridSize * 100 + gridSize/2 - 2, 920, 2, gridSize - 5);
+        int [] xPoints = new int [] {100 + gridSize * 100 + gridSize/2, 100 + gridSize * 100 + gridSize/2 + 3, 100 + gridSize * 100 + gridSize/2 + 5};
+        int [] yPoints = new int [] {920, 920 + 2, 920 + 2};
+        g.drawPolyline(xPoints, yPoints, 3);
+        g.drawLine(100 + gridSize * 100 + gridSize/2 + 3, 920 + 3, 100 + gridSize * 100 + gridSize/2 + 5, 920 + 1);
+        g.drawLine(100 + gridSize * 100 + gridSize/2 + 3, 920 + 3, 100 + gridSize * 100 + gridSize/2 + 5, 920 + 5);
+        g.setColor(Color.BLACK);
+        g.drawString("The Fetch Robot", 135 + gridSize * 100, 930);
 
         return 0;
     }
 
 
-    public static void drawRobots(Graphics g) throws FileNotFoundException {
-        boolean isShow = true;
 
-        Font font = new Font("宋体", Font.BOLD, 9);
+    public static int showInfo2(Graphics g) throws FileNotFoundException {
+
+        String path = "E:\\project\\3X3V6\\video\\V0\\news2.txt";
+
+        Scanner in = new Scanner(new File(path));
+        List data = new ArrayList();
+
+        while (in.hasNextLine()) {
+            int num = in.nextInt();
+            if(num == -1){
+                break;
+            }
+            int[] arrs = {num};
+            data.add(arrs);
+        }
+
+        g.setColor(Color.BLACK);
+        Font font = new Font("Times New Roman", Font.BOLD, 14);
+        g.setFont(font);
+
+        int textX = (width+1)*gap;
+        int textY = 22*gap;
+        int gapp = 18;
+
+        int[] a = new int[5];
+        int j = 0;
+        for (int i = 0; i < data.size(); i++) {
+            int[] arr = (int[]) data.get(i);
+            a[j] = arr[0];
+            j++;
+            if(j >= 5){
+                j = 0;
+                if(a[0] == 1){
+                    g.drawString("Fetch Robot "+String.valueOf(a[2])+" and Freight Robot "+String.valueOf((a[3]))+" handover successfully.",textX,textY+=gapp);
+                }else if(a[0] == 2){
+                    g.drawString("Task "+String.valueOf(a[1])+" has been finished successfully.",textX,textY+=gapp);
+                }
+            }
+        }
+
+        return 0;
+    }
+
+
+    public static int drawTarget(Graphics g) {
+
+        g.setColor(Color.LIGHT_GRAY);
+
+        g.fillRect((width - 6)*gap,(start + 4)*gap,5*gap,2*gap);
+        g.fillRect((width - 6)*gap, (start + 6)*gap,2*gap, (height - 8)*gap);
+        g.fillRect((width - 6)*gap,(height - 2)*gap,5*gap,2*gap);
+
+        g.fillRect(1*gap,(start + 4)*gap,5*gap,2*gap);
+        g.fillRect(4*gap, (start + 6)*gap,2*gap, (height - 8)*gap);
+        g.fillRect(1*gap,(height - 2)*gap,5*gap,2*gap);
+
+        return 0;
+    }
+
+
+
+    public static void drawRobots(Graphics g) throws FileNotFoundException {
+        boolean isShow = false;
+
+        Font font = new Font("Times New Roman", Font.PLAIN, 9);
         g.setColor(Color.BLACK);
         g.setFont(font);
 
-        String path = "E:\\project\\test\\robots.txt";
+        String path = "E:\\project\\3X3V6\\video\\V0\\robots.txt";
         Scanner in = new Scanner(new File(path));
         List data = new ArrayList();
         int num = 0;
         while (in.hasNextLine()) {
             num = in.nextInt();
 
-            if (num == -1) {
+            if(num == -1){
                 break;
             }
 
@@ -193,49 +300,47 @@ public class Map extends Thread {
             data.add(arrs);
         }
 
-        int[] robotNode = new int[7];
+        int[] robotNode = new int[5];
         int index = 0;
         for (int i = 0; i < data.size(); i++) {
             int[] arr = (int[]) data.get(i);
-            //     System.out.println(arr[0]);
 
             robotNode[index] = arr[0];
             index++;
-            if (index == 7) {
+            if(index == 5) {
                 index = 0;
-                if (robotNode[3] > 0) {
+                robotNode[2]+=2;
+                if(robotNode[3] > 0){
                     g.setColor(Color.MAGENTA);
-                    g.fillOval(robotNode[1] * gap + gridSize / 4 - 1, robotNode[2] * gap + (gridSize / 4) * 3, 3, 3);
-                    g.fillOval(robotNode[1] * gap + (gridSize / 4) * 3 - 1, robotNode[2] * gap + (gridSize / 4) * 3, 3, 3);
-                    g.fillRect(robotNode[1] * gap, robotNode[2] * gap + gridSize / 2, gridSize, gridSize / 4);
-                    if (isShow == true) {
+                    g.fillOval(robotNode[1]*gap + gridSize/4 - 2, robotNode[2]*gap + (gridSize/4)*3 - 1, 3,3);
+                    g.fillOval(robotNode[1]*gap + (gridSize/4)*3 - 2, robotNode[2]*gap + (gridSize/4)*3 - 1, 3,3);
+                    g.fillRect(robotNode[1]*gap-1,robotNode[2]*gap  + gridSize/2, gridSize+1, gridSize/4);
+                    if(isShow == true) {
                         g.drawString(String.valueOf(robotNode[0]), robotNode[1] * gap + gridSize + 1, robotNode[2] * gap + gridSize);
                     }
 
-                    if (robotNode[4] > 0) {
-                        //   g.drawRect(resultSet[i][0] * gap + gridSize / 4 - 3,resultSet[i][1] * gap - 4, 12,8);
+                    if(robotNode[4] > 0) {
                         int X;
-                        if (robotNode[4] < 10) {
+                        if(robotNode[4] < 10){
                             X = robotNode[1] * gap + gridSize / 4 - 2;
-                        } else {
+                        }else{
                             X = robotNode[1] * gap + gridSize / 4 - 4;
                         }
                         g.setColor(Color.BLACK);
-                        g.drawString(String.valueOf(robotNode[4]), X + 2, robotNode[2] * gap + gridSize / 2 - 1);
+                        g.drawString(String.valueOf(robotNode[4]), X + 2, robotNode[2] * gap + gridSize / 2 );
                     }
-                } else {
+                }else{
                     g.setColor(Color.blue);
-                    g.fillRect(robotNode[1] * gap, robotNode[2] * gap + gridSize - 5, gridSize, 5);
-                    g.fillRect(robotNode[1] * gap + gridSize / 2 - 2, robotNode[2] * gap, 2, gridSize - 5);
-                    int[] xPoints = new int[]{robotNode[1] * gap + gridSize / 2, robotNode[1] * gap + gridSize / 2 + 3, robotNode[1] * gap + gridSize / 2 + 5};
-                    int[] yPoints = new int[]{robotNode[2] * gap, robotNode[2] * gap + 2, robotNode[2] * gap + 2};
+                    g.fillRect(robotNode[1]*gap,robotNode[2]*gap + gridSize - 5, gridSize, 5);
+                    g.fillRect(robotNode[1]*gap + gridSize/2 - 2, robotNode[2]*gap, 2, gridSize - 5);
+                    int [] xPoints = new int [] {robotNode[1]*gap + gridSize/2, robotNode[1]*gap + gridSize/2 + 3, robotNode[1]*gap + gridSize/2 + 5};
+                    int [] yPoints = new int [] {robotNode[2]*gap, robotNode[2]*gap + 2, robotNode[2]*gap + 2};
                     g.drawPolyline(xPoints, yPoints, 3);
-                    g.drawLine(robotNode[1] * gap + gridSize / 2 + 3, robotNode[2] * gap + 3, robotNode[1] * gap + gridSize / 2 + 5, robotNode[2] * gap + 1);
-                    g.drawLine(robotNode[1] * gap + gridSize / 2 + 3, robotNode[2] * gap + 3, robotNode[1] * gap + gridSize / 2 + 5, robotNode[2] * gap + 5);
-                    if (isShow == true) {
+                    g.drawLine(robotNode[1]*gap + gridSize/2 + 3, robotNode[2]*gap + 3, robotNode[1]*gap + gridSize/2 + 5, robotNode[2]*gap + 1);
+                    g.drawLine(robotNode[1]*gap + gridSize/2 + 3, robotNode[2]*gap + 3, robotNode[1]*gap + gridSize/2 + 5, robotNode[2]*gap + 5);
+                    if(isShow == true) {
                         g.drawString(String.valueOf(robotNode[0]), robotNode[1] * gap + gridSize + 1, robotNode[2] * gap + gridSize);
                     }
-
                 }
             }
         }
