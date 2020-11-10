@@ -69,7 +69,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../最终视频/draw" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -258,6 +258,8 @@
       <workItem from="1603371556691" duration="232000" />
       <workItem from="1604827621214" duration="45000" />
       <workItem from="1604827675282" duration="64000" />
+      <workItem from="1604994153294" duration="20036000" />
+      <workItem from="1605016711398" duration="297000" />
     </task>
     <servers />
   </component>
