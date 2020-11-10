@@ -14,7 +14,7 @@ We develop a simulation platform with hundreds of fetch and freight robots to ev
 * Linux: Under floder CET, run the command: bash solve.sh
 
 ## How to run the draw progorm
-* Windows: Use IDEA 2020 to open the project, change the map and robot path as the path of the currently running back-end program, then start running the program.
+* Windows: Use IDEA 2020 to open the project, change the path of map.txt in function drawRobot(), the path of news.txt in function showInfo(), the path of news2.txt in function showInfo2() and the path of robots.txt in function drawRobots() as the path of the currently running back-end program, then start running the program.
 
 
 
