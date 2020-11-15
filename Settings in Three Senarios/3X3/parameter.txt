@@ -1,0 +1,23 @@
+76
+47
+3
+3
+9
+12
+30
+70
+1
+
+
+
+
+1.map_width : 地图宽度
+2.map_height ： 地图高度
+3.shelf_Xnum ： 货区行数
+4.shelf_Ynum ： 货区列数
+5.area_num ： 货区数量
+6.goodsTypeNumbers ： 货物种类
+7.pickRobotNum ： 拣货机器人数量
+8.freightRobotNum ： 运货机器人数量
+9.是否双向传送带，1：单向（右边） 2：双向（两边）
+
