@@ -260,6 +260,7 @@
       <workItem from="1604827675282" duration="64000" />
       <workItem from="1604994153294" duration="20036000" />
       <workItem from="1605016711398" duration="322000" />
+      <workItem from="1605173257520" duration="545000" />
     </task>
     <servers />
   </component>
@@ -312,10 +313,11 @@
     </state>
     <state width="1876" height="277" key="GridCell.Tab.0.right/-1366.0.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603371788681" />
     <state width="1322" height="90" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605017033082" />
-    <state x="440" y="93" key="SettingsEditor" timestamp="1603107502570">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="313" y="0" key="SettingsEditor" timestamp="1605173799409">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="440" y="93" key="SettingsEditor/-1366.0.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603107502570" />
+    <state x="313" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1605173799409" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

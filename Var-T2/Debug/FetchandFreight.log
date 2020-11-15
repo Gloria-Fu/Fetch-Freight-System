@@ -1,0 +1,34 @@
+﻿  calculate.cpp
+E:\project\3X3V5\FetchandFreight\calculate.cpp(183,20): warning C4018: “<”: 有符号/无符号不匹配
+E:\project\3X3V5\FetchandFreight\calculate.cpp(210,26): warning C4018: “<”: 有符号/无符号不匹配
+E:\project\3X3V5\FetchandFreight\calculate.cpp(223,20): warning C4018: “<”: 有符号/无符号不匹配
+E:\project\3X3V5\FetchandFreight\calculate.cpp(277,20): warning C4018: “<”: 有符号/无符号不匹配
+E:\project\3X3V5\FetchandFreight\calculate.cpp(503,34): warning C4018: “<”: 有符号/无符号不匹配
+  status_transform.cpp
+E:\project\3X3V5\FetchandFreight\status_transform.cpp(292,20): warning C4018: “<”: 有符号/无符号不匹配
+  task_allocation.cpp
+E:\project\3X3V5\FetchandFreight\task_allocation.cpp(36,21): warning C4018: “<”: 有符号/无符号不匹配
+E:\project\3X3V5\FetchandFreight\task_allocation.cpp(46,20): warning C4018: “<”: 有符号/无符号不匹配
+E:\project\3X3V5\FetchandFreight\task_allocation.cpp(97,20): warning C4018: “<”: 有符号/无符号不匹配
+E:\project\3X3V5\FetchandFreight\task_allocation.cpp(291,27): warning C4018: “<”: 有符号/无符号不匹配
+E:\project\3X3V5\FetchandFreight\task_allocation.cpp(381,23): warning C4018: “<”: 有符号/无符号不匹配
+E:\project\3X3V5\FetchandFreight\task_allocation.cpp(411,24): warning C4018: “<”: 有符号/无符号不匹配
+E:\project\3X3V5\FetchandFreight\task_allocation.cpp(423,23): warning C4018: “<”: 有符号/无符号不匹配
+E:\project\3X3V5\FetchandFreight\task_allocation.cpp(453,24): warning C4018: “<”: 有符号/无符号不匹配
+E:\project\3X3V5\FetchandFreight\task_allocation.cpp(505,27): warning C4018: “>”: 有符号/无符号不匹配
+  update_file.cpp
+E:\project\3X3V5\FetchandFreight\update_file.cpp(62,21): warning C4101: “e”: 未引用的局部变量
+E:\project\3X3V5\FetchandFreight\update_file.cpp(105,21): warning C4101: “e”: 未引用的局部变量
+E:\project\3X3V5\FetchandFreight\update_file.cpp(152,21): warning C4101: “e”: 未引用的局部变量
+E:\project\3X3V5\FetchandFreight\update_file.cpp(291,21): warning C4018: “<”: 有符号/无符号不匹配
+E:\project\3X3V5\FetchandFreight\update_file.cpp(284,10): warning C4101: “node”: 未引用的局部变量
+E:\project\3X3V5\FetchandFreight\update_file.cpp(312,20): warning C4101: “e”: 未引用的局部变量
+E:\project\3X3V5\FetchandFreight\update_file.cpp(333,21): warning C4018: “<”: 有符号/无符号不匹配
+E:\project\3X3V5\FetchandFreight\update_file.cpp(326,10): warning C4101: “node”: 未引用的局部变量
+E:\project\3X3V5\FetchandFreight\update_file.cpp(354,21): warning C4101: “e”: 未引用的局部变量
+E:\project\3X3V5\FetchandFreight\update_file.cpp(480,22): warning C4018: “<”: 有符号/无符号不匹配
+E:\project\3X3V5\FetchandFreight\update_file.cpp(494,21): warning C4101: “e”: 未引用的局部变量
+E:\project\3X3V5\FetchandFreight\update_file.cpp(516,21): warning C4101: “e”: 未引用的局部变量
+E:\project\3X3V5\FetchandFreight\update_file.cpp(533,21): warning C4101: “e”: 未引用的局部变量
+  正在生成代码...
+  FetchandFreight.vcxproj -> E:\project\3X3V5\FetchandFreight\Debug\FetchandFreight.exe
