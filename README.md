@@ -6,8 +6,6 @@ We develop a simulation platform with hundreds of fetch and freight robots to ev
   The parameter.txt in CET is the input parameter setting, the parameter can be changed according to different simulation scenarios. The folder tasks and goods contains the input   goods information and tasks information for 500 rounds of experiments.
 * Var-T1, Var-T2, Var-T3, Var-E1, Var_E2, Var-E3, Var-C1, Var-C2 are the variants of CET, correspond to eight varients in our paper.
 * Settings in Three Senarios: In our paper, we test the performance of CET and the eight variants in three differents senarios. 3X3 represents the column goods area number is 3 and the row goods area number is 3. The CET and eight variants here take the 6X6 senario, if you want to test the algorithm in other serarios, you can take the files under this folder to replace the files in CET and other variants.
-* Goods Information: The given goods storage information for three simulation scenarios.
-* Tasks Information: The given tasks storage information for three simulation scenarios.
 * Interface: Display the simulation platform.
 * Video: The video contains the simulation and demo system.
 * Results in paper: The total results of the simulations we proposed in the paper.
